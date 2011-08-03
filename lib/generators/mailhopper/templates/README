@@ -1,0 +1,28 @@
+
+===============================================================================
+Mailhopper has been installed.
+===============================================================================
+
+To configure your application to use Mailhopper:
+
+1) Migrate your database with "rake db:migrate".
+
+2) Configure mailers either in environment.rb or environment-specific config files:
+
+  MyApp::Application.configure do
+    config.action_mailer.delivery_method = :mailhopper
+  end
+
+Alternatively, or additionally, you can configure individual mailers:
+
+  class MyMailer < ActionMailer::Base
+    ActionMailer::Base.delivery_method = :mailhopper
+  end
+
+3) Install a delivery agent, such as DelayedMailhopper, so that emails will be delivered from your queue.
+
+4) Configure a delivery method in "config/initializers/mailhopper" for your delivery agent to use (the default is smtp).
+
+  Mailhopper::Base.setup do |config|
+    config.default_delivery_method = :smtp
+  end

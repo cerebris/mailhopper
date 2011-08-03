@@ -1,22 +1,64 @@
 = Mailhopper
 
-Mailhopper provides an ActiveRecord based queue for email storage and delivery.
+Mailhopper provides an ActiveRecord based queue for email storage and delivery in Rails apps.
 
-Mailhopper is meant to be used along with a delivery agent such as DelayedMailhopper, which uses DelayedJob to deliver email from the Mailhopper queue.
+Mailhopper is intended to be used along with a delivery agent such as DelayedMailhopper, which uses DelayedJob to deliver email from the Mailhopper queue. Without use of a delivery agent, emails will accumulate in the Mailhopper queue but won't be delivered.
 
-== Usage
+== Requirements
 
+Rails 3.0+
 
-== Contributing to Mailhopper
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+== Installation for Rails
+
+Add to your project's Gemfile:
+
+  gem 'mailhopper'
+  
+Install with bundler:
+
+  bundle install
+  
+Generate default initializer and migration files:
+
+  rails generate mailhopper
+  
+Migrate your database:
+
+  rake db:migrate
+
+!!! Don't forget to also install a delivery agent, such as DelayedMailhopper, so that emails will be delivered from your queue !!!
+  
+== Configuration
+
+If you want all of your application's email to be queued in Mailhopper, configure mailers either in environment.rb or your application's environment-specific configuration files:
+
+  MyApp::Application.configure do
+    config.action_mailer.delivery_method = :mailhopper
+  end
+
+Alternatively, or additionally, configure individual mailers to use Mailhopper:
+
+  class MyMailer < ActionMailer::Base
+    ActionMailer::Base.delivery_method = :mailhopper
+  end
+
+== Options
+
+The following options can be configured in your initializer (config/initializers/mailhopper):
+
+  Mailhopper::Base.setup do |config|
+    # The base email class used by Mailhopper
+    config.email_class = Mailhopper::Email
+
+    # The base mailer class used by Mailhopper
+    config.mailer_class = Mailhopper::Mailer
+    
+    # The method used by the delivery agent to deliver emails from your queue
+    config.default_delivery_method = :smtp
+  end
+
+It's preferable to leave these options out of your initializer if the defaults, shown above, are acceptable. Delivery agents may override some defaults (e.g. DelayedMailhopper sets email_class = DelayedMailhopper::Email).
 
 == Copyright
 
-Copyright (c) 2011 Cerebris Corporation. See MIT-LICENSE for further details.
+Copyright (c) 2011 Cerebris Corporation. Released under the MIT License. See MIT-LICENSE for further details.
