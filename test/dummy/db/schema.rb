@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20110801151741) do
     t.string   "subject"
     t.text     "content"
     t.datetime "sent_at"
-    t.integer  "delayed_job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
