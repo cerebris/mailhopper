@@ -11,7 +11,6 @@ class CreateEmails < ActiveRecord::Migration
                :subject
       t.text :content
       t.datetime :sent_at
-      t.integer :delayed_job_id
       t.timestamps
     end
   end

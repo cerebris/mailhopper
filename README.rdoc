@@ -6,7 +6,7 @@ Mailhopper is intended to be used along with a delivery agent such as DelayedMai
 
 == Requirements
 
-Rails 3.0+
+Rails 3.1+
 
 == Installation for Rails
 
@@ -61,4 +61,4 @@ It's preferable to leave these options out of your initializer if the defaults, 
 
 == Copyright
 
-Copyright (c) 2011 Cerebris Corporation. Released under the MIT License. See MIT-LICENSE for further details.
+Copyright (c) 2011 Cerebris Corporation. This is free software released under the MIT License (see MIT-LICENSE for details).
