@@ -1,13 +1,13 @@
 = Mailhopper
 
-Mailhopper provides an ActiveRecord based queue for email storage and delivery in Rails apps.
+Mailhopper provides a simple ActiveRecord-based queue for asynchronous delivery of email in Rails apps.
 
 Why use Mailhopper to queue your email?
 * Mailhopper captures the full content and headers of emails at their time of creation. It can handle multiple MIME types and attachments.
 * If email can't be delivered from your queue (e.g. your smtp server is down), you can retry delivery until successful.
 * Emails can be accessed at any time, even after they've been sent.
 
-Mailhopper is intended to be used along with a delivery agent such as DelayedMailhopper, which uses DelayedJob to deliver email from the Mailhopper queue. Without use of a delivery agent, emails will accumulate in the Mailhopper queue but won't be delivered.
+Mailhopper is intended to be used along with a delivery agent such as DelayedMailhopper, which uses DelayedJob to deliver email from the Mailhopper queue. Without a delivery agent, emails will accumulate in the Mailhopper queue but won't be delivered.
 
 == Requirements
 
@@ -31,7 +31,7 @@ Migrate your database:
 
   rake db:migrate
 
-!!! Don't forget to also install a delivery agent, such as DelayedMailhopper, so that emails will be delivered from your queue !!!
+Don't forget to also install a delivery agent, such as DelayedMailhopper, so that emails will be delivered from your queue !!!
   
 == Configuration
 
