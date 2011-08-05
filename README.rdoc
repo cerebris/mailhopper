@@ -35,7 +35,7 @@ Migrate your database:
   
 == Configuration
 
-If you want all of your application's email to be queued in Mailhopper, configure mailers either in environment.rb or your application's environment-specific configuration files:
+If you want all of your application's email to be queued with Mailhopper, configure mailers either in application.rb or your application's environment-specific configuration files:
 
   MyApp::Application.configure do
     config.action_mailer.delivery_method = :mailhopper
