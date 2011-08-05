@@ -40,11 +40,5 @@ class EmailTest < ActiveSupport::TestCase
 
       assert email.sent_at.nil?
     end
-
-    context "with a from address" do
-      setup do
-        @email.from_address = 'user@example.com'
-      end
-    end
   end
 end
