@@ -8,10 +8,15 @@ class CreateEmails < ActiveRecord::Migration
       t.string :reply_to_address,
                :subject
 
+      # The following addresses have been defined as text fields to allow for multiple recipients. These fields could
+      # instead be defined as strings, and even indexed, if you'd like to improve search performance and you can
+      # confidently limit the size of their contents.
+
       t.text   :to_address,
                :cc_address,
                :bcc_address,
-               :content
+
+      t.text   :content
 
       t.datetime :sent_at
       t.timestamps
