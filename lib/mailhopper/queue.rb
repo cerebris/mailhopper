@@ -18,7 +18,7 @@ module Mailhopper
     private
 
     def address_to_s(field)
-      field.join(',') if field
+      field.join(',') if field && !field.empty?
     end
   end
 end
