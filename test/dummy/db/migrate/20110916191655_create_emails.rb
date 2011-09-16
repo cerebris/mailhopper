@@ -4,12 +4,15 @@ class CreateEmails < ActiveRecord::Migration
   def self.up
     create_table :emails do |t|
       t.string :from_address, :null => false
-      t.string :to_address,
+
+      t.string :reply_to_address,
+               :subject
+
+      t.text   :to_address,
                :cc_address,
                :bcc_address,
-               :reply_to_address,
-               :subject
-      t.text :content
+               :content
+
       t.datetime :sent_at
       t.timestamps
     end
