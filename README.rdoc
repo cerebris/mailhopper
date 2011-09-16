@@ -7,7 +7,11 @@ Why use Mailhopper to queue your email?
 * If email can't be delivered from your queue (e.g. your smtp server is down), you can retry delivery until successful.
 * Emails can be accessed at any time, even after they've been sent.
 
+The complete rationale is explained in this blog post: http://www.cerebris.com/blog/2011/09/07/tame-rails-email-dragons-with-mailhopper/
+
 Mailhopper is intended to be used along with a delivery agent such as DelayedMailhopper, which uses DelayedJob to deliver email from the Mailhopper queue. Without a delivery agent, emails will accumulate in the Mailhopper queue but won't be delivered.
+
+DelayedMailhopper can be found here: https://github.com/cerebris/delayed_mailhopper
 
 == Requirements
 
