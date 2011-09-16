@@ -28,12 +28,13 @@ class EmailTest < ActiveSupport::TestCase
       assert_equal Mailhopper::Email.count, 1
 
       email = Mailhopper::Email.first
-      assert_equal email.from_address, headers[:from]
-      assert_equal email.to_address, headers[:to]
-      assert_equal email.cc_address, headers[:cc]
-      assert_equal email.bcc_address, headers[:bcc]
-      assert_equal email.reply_to_address, headers[:reply_to]
-      assert_equal email.subject, headers[:subject]
+
+      assert_equal headers[:from],      email.from_address
+      assert_equal headers[:to],        email.to_address
+      assert_equal headers[:cc],        email.cc_address
+      assert_equal headers[:bcc],       email.bcc_address
+      assert_equal headers[:reply_to],  email.reply_to_address
+      assert_equal headers[:subject],   email.subject
 
       # Email content will include headers as well as content
       assert email.content.include?(content)
