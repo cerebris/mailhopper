@@ -14,8 +14,9 @@ class CreateEmails < ActiveRecord::Migration
 
       t.text   :to_address,
                :cc_address,
-               :bcc_address,
-               :content
+               :bcc_address
+
+      t.text   :content
 
       t.datetime :sent_at
       t.timestamps
