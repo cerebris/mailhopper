@@ -14,7 +14,7 @@ class CreateEmails < ActiveRecord::Migration
 
       t.text   :to_address,
                :cc_address,
-               :bcc_address,
+               :bcc_address
 
       t.text   :content
 
