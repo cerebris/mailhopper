@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mailhopper (0.0.5)
+    mailhopper (0.0.6)
       rails (>= 3.1.0)
 
 GEM
