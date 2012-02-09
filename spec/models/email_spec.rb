@@ -1,61 +1,58 @@
-require 'test_helper'
+require 'spec_helper'
 
-class EmailTest < ActiveSupport::TestCase
-  context "An email" do
-    setup do
-      @email = Mailhopper::Email.new
-    end
+describe "Email" do
+  let(:email) { Mailhopper::Email.new }
 
-    should "require a from address" do
-      assert !@email.valid?
-      @email.from_address = 'user@example.com'
-      assert @email.valid?
-    end
-
-    should "be generated when mail is sent to individual addresses" do
-      headers = {
-        :from     => 'from@example.com',
-        :to       => 'to@example.com',
-        :cc       => 'cc@example.com',
-        :bcc      => 'bcc@example.com',
-        :reply_to => 'reply_to@example.com',
-        :subject  => 'Hiya!'
-      }
-      content = 'Papaya'
-
-      generate_and_verify_email(headers, content)
-    end
-
-    should "be generated when mail is sent to multiple addresses" do
-      headers = {
-        :from     => 'from1@example.com',
-        :to       => ['to1@example.com', 'to2@example.com'],
-        :cc       => ['cc1@example.com', 'cc2@example.com'],
-        :bcc      => ['bcc1@example.com', 'bcc2@example.com'],
-        :reply_to => 'reply_to@example.com',
-        :subject  => 'Hiya!'
-      }
-      content = 'Papaya'
-
-      generate_and_verify_email(headers, content)
-    end
-
-    should "be generated when mail is sent to blank addresses" do
-      headers = {
-        :from     => 'from@example.com',
-        :to       => 'to@example.com',
-        :cc       => nil,
-        :bcc      => nil,
-        :reply_to => nil,
-        :subject  => 'Hiya!'
-      }
-      content = 'Papaya'
-
-      generate_and_verify_email(headers, content)
-    end
+  it "should require a from address" do
+    assert !email.valid?
+    email.from_address = 'user@example.com'
+    assert email.valid?
   end
 
-  private
+  it "should be generated when mail is sent to individual addresses" do
+    headers = {
+      :from     => 'from@example.com',
+      :to       => 'to@example.com',
+      :cc       => 'cc@example.com',
+      :bcc      => 'bcc@example.com',
+      :reply_to => 'reply_to@example.com',
+      :subject  => 'Hiya!'
+    }
+    content = 'Papaya'
+
+    generate_and_verify_email(headers, content)
+  end
+
+  it "should be generated when mail is sent to multiple addresses" do
+    headers = {
+      :from     => 'from1@example.com',
+      :to       => ['to1@example.com', 'to2@example.com'],
+      :cc       => ['cc1@example.com', 'cc2@example.com'],
+      :bcc      => ['bcc1@example.com', 'bcc2@example.com'],
+      :reply_to => 'reply_to@example.com',
+      :subject  => 'Hiya!'
+    }
+    content = 'Papaya'
+
+    generate_and_verify_email(headers, content)
+  end
+
+  it "should be generated when mail is sent to blank addresses" do
+    headers = {
+      :from     => 'from@example.com',
+      :to       => 'to@example.com',
+      :cc       => nil,
+      :bcc      => nil,
+      :reply_to => nil,
+      :subject  => 'Hiya!'
+    }
+    content = 'Papaya'
+
+    generate_and_verify_email(headers, content)
+  end
+end
+
+private
 
   def generate_and_verify_email(headers, content)
     assert_equal Mailhopper::Email.count, 0
@@ -88,4 +85,3 @@ class EmailTest < ActiveSupport::TestCase
       assert_equal header, address
     end
   end
-end
