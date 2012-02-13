@@ -16,7 +16,12 @@ class CreateEmails < ActiveRecord::Migration
                :cc_address,
                :bcc_address
 
-      t.text   :content
+      # The content field must be large enough to include the full content of emails, including any attachments. If you
+      # do not plan to send any attachments or long emails, you could leave off this limit. In MySQL, this will result
+      # in a TEXT column with a limit of 64KB characters. Otherwise, 100MB characters seems a safe limit for almost any
+      # email. In MySQL, this will result in the creation of a LONGTEXT column with an actual limit of 4GB characters.
+
+      t.text   :content, :limit => 100.megabytes
 
       t.datetime :sent_at
       t.timestamps

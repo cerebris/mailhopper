@@ -21,21 +21,26 @@ Rails 3.1+
 ## Installation
 
 Add to your project's Gemfile:
+
 ```
 gem 'mailhopper'
 ```
 
 Install with bundler:
+
 ```
 bundle install
 ```
 
 Generate default initializer and migration files:
+
 ```
 rails generate mailhopper
 ```
 
-Migrate your database:
+*Before migrating your database, please take a moment to review the `CreateEmails` migration that has been generated.* In particular, please review the limit to the `content` field, which has been set to a safe but very large size (100MB characters). You may wish to change this based upon your needs and particular database.
+
+When you're ready, migrate your database:
 
 ```
 rake db:migrate
