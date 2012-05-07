@@ -50,6 +50,20 @@ describe "Email" do
 
     generate_and_verify_email(headers, content)
   end
+
+  it "should be generated even when mail is sent to invalid addresses" do
+    headers = {
+      :from     => 'from.@example.com',
+      :to       => 'to.@example.com',
+      :cc       => nil,
+      :bcc      => nil,
+      :reply_to => nil,
+      :subject  => 'Hiya!'
+    }
+    content = 'Papaya'
+
+    generate_and_verify_email(headers, content)
+  end
 end
 
 private

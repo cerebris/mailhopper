@@ -17,8 +17,14 @@ module Mailhopper
 
     private
 
-    def address_to_s(field)
-      field.join(',') if field && !field.empty?
-    end
+      def address_to_s(field)
+        if field
+          if field.is_a?(Array)
+            field.join(',') unless field.empty?
+          else
+            field
+          end
+        end
+      end
   end
 end
