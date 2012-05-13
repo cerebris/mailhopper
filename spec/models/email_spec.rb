@@ -54,7 +54,7 @@ describe "Email" do
   it "should be generated even when mail is sent to invalid addresses" do
     headers = {
       :from     => 'from.@example.com',
-      :to       => 'to.@example.com',
+      :to       => 'to@to@example.com',
       :cc       => nil,
       :bcc      => nil,
       :reply_to => nil,
