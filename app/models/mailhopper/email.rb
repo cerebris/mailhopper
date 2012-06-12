@@ -1,7 +1,9 @@
 module Mailhopper
   class Email < ActiveRecord::Base
     attr_accessible :to_address, :from_address, :cc_address, :bcc_address,
-                    :reply_to_address, :subject, :content
+                    :reply_to_address, :subject, :content,
+                    :text_part, :html_part, :header
+
     default_scope :order => 'created_at DESC'
     scope :unsent, :conditions => 'sent_at is null'
 
@@ -25,7 +27,10 @@ module Mailhopper
           :bcc_address      => address_to_s(mail.bcc),
           :reply_to_address => address_to_s(mail.reply_to),
           :subject          => mail.subject,
-          :content          => mail.to_s
+          :content          => mail.to_s,
+          :html_part        => mail.html_part.to_s,
+          :text_part        => mail.text_part.to_s,
+          :header           => mail.header.to_s
         })
       end
 
