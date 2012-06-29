@@ -14,7 +14,10 @@ class CreateEmails < ActiveRecord::Migration
 
       t.text   :to_address,
                :cc_address,
-               :bcc_address
+               :bcc_address,
+               :header,
+               :html_part,
+               :text_part
 
       # The content field must be large enough to include the full content of emails, including any attachments. If you
       # do not plan to send any attachments or long emails, you could leave off this limit. In MySQL, this will result
