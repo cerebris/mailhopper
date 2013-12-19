@@ -6,9 +6,6 @@ Dummy::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
-
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -24,4 +21,12 @@ Dummy::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+
+  # Do not eager load code on boot. This avoids loading your whole application
+  # just for the purpose of running a single test. If you are using a tool that
+  # preloads Rails for running tests, you may have to set it to true.
+  config.eager_load = false
+
+  # Locale validation approach
+  config.i18n.enforce_available_locales = true
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Email" do
+describe Mailhopper::Email do
   let(:email) { Mailhopper::Email.new }
 
   it "should require a from address" do
@@ -63,6 +63,35 @@ describe "Email" do
     content = 'Papaya'
 
     generate_and_verify_email(headers, content)
+  end
+
+  describe '#create_from_mail' do
+
+    subject { Mailhopper::Email }
+
+    let(:mail) do
+      double('mail', {
+        to: 'to',
+        from: 'from',
+        cc: 'cc',
+        bcc: 'bcc',
+        reply_to: 'reply_to',
+        subject: 'subject',
+        to_s: 'content'
+      })
+    end
+
+    it 'creates successully with all data populated right' do
+      email = subject.send(:create_from_mail, mail)
+      expect(email.valid?).to be_true
+      expect(email.to_address).to eq('to')
+      expect(email.from_address).to eq('from')
+      expect(email.cc_address).to eq('cc')
+      expect(email.bcc_address).to eq('bcc')
+      expect(email.reply_to_address).to eq('reply_to')
+      expect(email.subject).to eq('subject')
+      expect(email.content).to eq('content')
+    end
   end
 end
 
