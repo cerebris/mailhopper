@@ -1,13 +1,13 @@
 module Mailhopper
   class Email < ActiveRecord::Base
-    default_scope ->{ order('created_at DESC') }
-    scope :unsent, ->{ where(sent_at: nil) }
-
     # Starting from Rails 4 <tt>attr_accessible</tt> is deprecated in favour of Strong parameters
     if Rails::VERSION::MAJOR < 4
       attr_accessible :to_address, :from_address, :cc_address, :bcc_address,
                       :reply_to_address, :subject, :content
     end
+
+    default_scope ->{ order('created_at DESC') }
+    scope :unsent, ->{ where(sent_at: nil) }
 
     validates :from_address, :presence => true
 
