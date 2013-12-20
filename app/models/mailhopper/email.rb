@@ -1,9 +1,13 @@
 module Mailhopper
   class Email < ActiveRecord::Base
-    attr_accessible :to_address, :from_address, :cc_address, :bcc_address,
-                    :reply_to_address, :subject, :content
-    default_scope :order => 'created_at DESC'
-    scope :unsent, :conditions => 'sent_at is null'
+    # Starting from Rails 4 <tt>attr_accessible</tt> is deprecated in favour of Strong parameters
+    if Rails::VERSION::MAJOR < 4
+      attr_accessible :to_address, :from_address, :cc_address, :bcc_address,
+                      :reply_to_address, :subject, :content
+    end
+
+    default_scope lambda { order('created_at DESC') }
+    scope :unsent, lambda { where(:sent_at => nil) }
 
     validates :from_address, :presence => true
 
