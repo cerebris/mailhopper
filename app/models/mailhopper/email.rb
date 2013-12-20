@@ -6,8 +6,8 @@ module Mailhopper
                       :reply_to_address, :subject, :content
     end
 
-    default_scope ->{ order('created_at DESC') }
-    scope :unsent, ->{ where(sent_at: nil) }
+    default_scope lambda { order('created_at DESC') }
+    scope :unsent, lambda { where(:sent_at => nil) }
 
     validates :from_address, :presence => true
 

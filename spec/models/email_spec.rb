@@ -71,13 +71,13 @@ describe Mailhopper::Email do
 
     let(:mail) do
       double('mail', {
-        to: 'to',
-        from: 'from',
-        cc: 'cc',
-        bcc: 'bcc',
-        reply_to: 'reply_to',
-        subject: 'subject',
-        to_s: 'content'
+        :from     => 'from',
+        :to       => 'to',
+        :cc       => 'cc',
+        :bcc      => 'bcc',
+        :reply_to => 'reply_to',
+        :subject  => 'subject',
+        :to_s     => 'content'
       })
     end
 

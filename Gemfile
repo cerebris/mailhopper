@@ -10,5 +10,6 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-# To use debugger
-# gem 'ruby-debug'
+# Mailhopper is compatible with rails >= 4, but that does not work with Ruby < 1.9. So, to allow CI builds on those versions,
+# we gotta stick with the 3.x line.
+gem 'activesupport', '~> 3.2.0'
