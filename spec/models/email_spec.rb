@@ -83,14 +83,14 @@ describe Mailhopper::Email do
 
     it 'creates successully with all data populated right' do
       email = subject.send(:create_from_mail, mail)
-      expect(email.valid?).to be_true
-      expect(email.to_address).to eq('to')
-      expect(email.from_address).to eq('from')
-      expect(email.cc_address).to eq('cc')
-      expect(email.bcc_address).to eq('bcc')
-      expect(email.reply_to_address).to eq('reply_to')
-      expect(email.subject).to eq('subject')
-      expect(email.content).to eq('content')
+      assert email.valid?
+      assert_equal 'to', email.to_address
+      assert_equal 'from', email.from_address
+      assert_equal 'cc', email.cc_address
+      assert_equal 'bcc', email.bcc_address
+      assert_equal 'reply_to', email.reply_to_address
+      assert_equal 'subject', email.subject
+      assert_equal 'content', email.content
     end
   end
 end
